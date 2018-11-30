@@ -1,0 +1,41 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}
+    {{ page }}
+{% endblock %}
+
+{% block content %}
+    <div class="app-dashboard-body-content off-canvas-content" data-off-canvas-content>
+
+        <h2 class="text-center">Dashboard</h2>
+        <hr>
+        <div class="margin-top-2">
+            <section>
+                <h3>Features</h3>
+                <table class="hover text-center dashboard">
+                    <thead>
+                    <tr>
+                        <th class="text-center">id</th>
+                        <th class="text-center">Title</th>
+                        <th class="text-center show-for-large">Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for feature in features %}
+                    <tr>
+                        <td>{{ feature.id }}</td>
+                        <td><a href="/features/{{ feature.id }}/edit">{{ feature.title }}</a></td>
+                        {%  if feature.published == "1" %}
+                            <td class="show-for-large">Published</td>
+                        {%  else %}
+                            <td class="show-for-large">Unpublished</td>
+                        {%  endif %}
+                    </tr>
+                    {%  endfor %}
+                    </tbody>
+                </table>
+            </section>
+        </div>
+
+    </div>
+{% endblock %}
